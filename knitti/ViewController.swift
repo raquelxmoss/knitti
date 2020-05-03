@@ -14,16 +14,24 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        count.setTitle("\(countNum)", for: [])
+        setCountLabel()
     }
     
     @IBAction func countTapped(_ sender: Any) {
-        self.countNum = max(self.countNum + 1, 0)
-        count.setTitle("\(countNum)", for: [])
+        changeCount(by: 1)
+        setCountLabel()
     }
     
     @IBAction func undoTapped(_ sender: Any) {
-        self.countNum = max(self.countNum - 1, 0)
-        count.setTitle("\(countNum)", for: [])
+        changeCount(by: -1)
+        setCountLabel()
+    }
+
+    func changeCount(by: Int) -> Void {
+        self.countNum = max(self.countNum + by, 0)
+    }
+
+    func setCountLabel () -> Void {
+        count.setTitle("\(countNum)", for: UIControl.State.normal)
     }
 }
